@@ -6,7 +6,8 @@ package codigo;
 
 /**
  *
- * @author juanry
+ * @author juanry , Romer
+ *
  */
 
 public class ListaDe0 {
@@ -46,12 +47,21 @@ public class ListaDe0 {
         this.size = size;
     }
     
-    //Revisa que la lista sea o no vacia
+    /**
+     * 
+     * @return valor de tipo boolean si la lista es vacia o no
+     */
+    
     public boolean esVacio(){
         return pFirst == null;
     }
     
-    //Inserta un nombre del usuario al inicio de una lista
+    /**
+     * 
+     * @param name 
+     *  Inserta un nombre del usuario al inicio de una lista
+     */
+
     public void insertarInicio (String name){ 
         
         NodoLista node;
@@ -70,7 +80,13 @@ public class ListaDe0 {
         }
 
     }
-    //Inserta un nombre del usuario al inicio de una lista
+    
+    /**
+     * 
+     * @param node
+     * @return lista añadida el nodo al final
+     */
+
     public  ListaDe0 insertarFinal (NodoLista node){
     
         NodoLista aux = pFirst;
@@ -93,7 +109,12 @@ public class ListaDe0 {
         return this;
     }    
     
-    //Inserta un nombre al final de la lista, si el nombre del usuario NO existe ya en la lista
+    /**
+     * 
+     * @param name 
+     *  Inserta un nombre al final de la lista, si el nombre del usuario NO existe ya en la lista
+     */
+
     public void insert (String name){
         if(search(name)== null){
         NodoLista nuevoName = new NodoLista(name);
@@ -101,7 +122,12 @@ public class ListaDe0 {
         }
     }    
 
-    //Busca el nombre de la lista, y si lo encuentra, devuelve el nodo que contiene dicho nombre
+    /**
+     * 
+     * @param name
+     * @return Busca el nombre de la lista, y si lo encuentra, devuelve el nodo que contiene dicho nombre
+     */
+  
     public NodoLista search(String name){
         NodoLista nodo = getpFirst();
         while  (nodo != null && !nodo.getUsuario().equals(name) ){
@@ -109,7 +135,12 @@ public class ListaDe0 {
         return nodo;
     }
     
-    //Busca el nodo que contiene el nombre a buscar, sea nulo, no borra nada, si lo consigue, aux se conecta al que le sigue al que, queremos eliminar. 
+    /**
+     * 
+     * @param name 
+     * Busca el nodo que contiene el nombre a buscar, sea nulo, no borra nada, si lo consigue, aux se conecta al que le sigue al que, queremos eliminar. 
+     */
+    
     public void delete( String name){
         NodoLista eliminado = search(name);
         if(eliminado != null){         

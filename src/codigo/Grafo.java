@@ -42,8 +42,13 @@ public class Grafo {
     public void setListaAdUsers(ListaDe0[] list_users) {
         this.listaAdUsers = list_users;
     }
-    //Verificamos que el nombre no este vacio ni ya exista. Buscamos un espacio vacio en la lista de adyacencia para insertar el nuevo usuario
-    //Si no hay espacios disponibles, creamos otra lista de adyacencia igual a la original pero con un espacio más para nuestro nuevo usuario
+
+    /**
+     * 
+     * @param name 
+     *   Verificamos que el nombre no este vacio ni ya exista. Buscamos un espacio vacio en la lista de adyacencia para insertar el nuevo usuario
+         Si no hay espacios disponibles, creamos otra lista de adyacencia igual a la original pero con un espacio más para nuestro nuevo usuario
+     */
     public void crearCuenta(String name){
         if(this.buscarCuenta(name)==null && !name.equals("@")){
             boolean espacioVacio = false;
@@ -73,7 +78,12 @@ public class Grafo {
         }
     }
     
-    //Buscamos un par de nodos en la lista de usuarios, y si los encontramos a ambos devolvemos la posicion del primero en la lista de adyacencias
+    /**
+     * 
+     * @param origen
+     * @param destino
+     * @return Buscamos un par de nodos en la lista de usuarios, y si los encontramos a ambos devolvemos la posicion del primero en la lista de adyacencias
+     */
     public int searchNodes(String origen, String destino){
         boolean origenEncontrado = false;
         boolean destinoEncontrado = false;
@@ -95,14 +105,26 @@ public class Grafo {
             return -1;
         }
     }
-    //Agregamos al primer usuario a la lista de adyacencia del segundo, si ambos existen
+    
+    /**
+     * 
+     * @param origen
+     * @param destino 
+     * Agregamos al primer usuario a la lista de adyacencia del segundo, si ambos existen
+     */
     public void seguir(String origen, String destino){
         int encontrados = searchNodes(origen,destino);
         if (encontrados!= -1){
             getListaAdUsers()[encontrados].insert(origen);
         }
     }
-    //Eliminamos al primer usuario de la lista de adyacencia del segundo, si ambos existen
+    
+    /**
+     * 
+     * @param origen
+     * @param destino 
+     * Eliminamos al primer usuario de la lista de adyacencia del segundo, si ambos existen
+     */
     public void dejarSeguir(String origen, String destino){
         int encontrados = searchNodes(origen,destino);
         if (encontrados!= -1){       
@@ -110,8 +132,12 @@ public class Grafo {
         }
     }
     
-    //Creamos una nueva lista de adyacencia copiando la original pero sin agregar al usuario que queremos eliminar. Copiamos cada lista de adyacencia de cada usuario
-    //y eliminamos de esta al usuario que queremos borrar, si es que está en dicha lista.
+    /**
+     * 
+     * @param nombre 
+     *   Creamos una nueva lista de adyacencia copiando la original pero sin agregar al usuario que queremos eliminar. Copiamos cada lista de adyacencia de cada usuario
+     *   y eliminamos de esta al usuario que queremos borrar, si es que está en dicha lista.
+     */
     public void eliminarCuenta(String nombre){
         if(buscarCuenta(nombre)!= null){
         ListaDe0[] nueva = new ListaDe0[getCapacidad()-1];
@@ -128,7 +154,11 @@ public class Grafo {
         }
     }
 
-    //Buscamos un nodo en la lista de adyacencia por su usuario
+    /**
+     * 
+     * @param name
+     * @return Buscamos un nodo en la lista de adyacencia por su usuario 
+     */
    public NodoLista buscarCuenta(String name){
             for (int i = 0; i < getCapacidad(); i++) { 
                 if(this.getListaAdUsers()[i]!= null){
@@ -140,7 +170,10 @@ public class Grafo {
             return null;
         }   
    
-    //Retornamos un string con usuarios y relaciones
+    /**
+     * 
+     * @return Retornamos un string con usuarios y relaciones
+     */
     public String show(){
         String grafo = "usuarios \n";
         for (int i = 0; i < getCapacidad(); i++) {
@@ -162,9 +195,6 @@ public class Grafo {
         }}
         return grafo;
     }
-
-
-    
 
 }
     

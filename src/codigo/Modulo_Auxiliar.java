@@ -22,6 +22,12 @@ public class Modulo_Auxiliar {
     public Modulo_Auxiliar(){
     }
     
+    /**
+     * 
+     * @param archivo
+     * @return grafo
+     */
+    
     public Grafo leerArchivo(String archivo){
         Grafo grafo = new Grafo(1);
         String linea;
@@ -89,8 +95,14 @@ public class Modulo_Auxiliar {
         }catch( Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
-        }
-//Creamos un objeto Graph y le insertamos los nodos y relaciones de nuestro grafo
+    }
+    
+    /**
+     * 
+     * @param grafo 
+     * Creamos un objeto Graph y le insertamos los nodos y relaciones de nuestro grafo
+     * Buscamos los nodos fuermetente conectados y cambiamos el color de la arista si ambos nodos estan fuertemente enlazados
+     */
     public void graficar_grafo(Grafo grafo){
     Graph graph = new SingleGraph("MyGraph");
     graph.setAttribute("ui.stylesheet", "node { shape: circle; fill-color: #ffbdbd; text-color: #000000; size: 40px; } "
@@ -111,7 +123,7 @@ public class Modulo_Auxiliar {
             currentUser = currentUser.getSiguiente();
         }
     }
-//Buscamos los nodos fuermetente conectados y cambiamos el color de la arista si ambos nodos estan fuertemente enlazados
+
 
     ListaDe0[] components = alogritmo_de_kosaraju(grafo);
     for (int i = 0; i < components.length; i++) {
@@ -162,7 +174,12 @@ public Grafo invertir_grafo(Grafo grafo) {
 
     return grafo_inv;
 }
-// recorremos el grafo usando el dfs y vamos gruardando los nodos fuertemente conectados enel arreglo de listas simples components
+
+/**
+ * 
+ * @param grafo
+ * @return recorremos el grafo usando el dfs y vamos gruardando los nodos fuertemente conectados en el arreglo de listas simples components 
+ */
 public ListaDe0[] alogritmo_de_kosaraju(Grafo grafo) {
     ListaDe0 order = new ListaDe0();
     boolean[] visited = new boolean[grafo.getCapacidad()];
@@ -193,7 +210,14 @@ public ListaDe0[] alogritmo_de_kosaraju(Grafo grafo) {
     return componentes;
 }
 
-//recorremos el grafo en profundidad y visitamos los nodos que no han sido visitados
+/**
+ * 
+ * @param userIndex
+ * @param visited
+ * @param order
+ * @param grafo 
+ * recorremos el grafo en profundidad y visitamos los nodos que no han sido visitados
+ */
 public void dfs(int userIndex, boolean[] visited, ListaDe0 order, Grafo grafo) {
     visited[userIndex] = true;
     ListaDe0 userList = grafo.getListaAdUsers()[userIndex];
